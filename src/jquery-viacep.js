@@ -27,33 +27,35 @@
 
             _self.isRequesting = true;
             _self.currZipcode = zipcode;
-            _self.$form.trigger( events.ajax_start ).makeRequest( zipcode );
+            _self.dispatch( events.ajax_start, { zipcode: zipcode } ).makeRequest( zipcode );
         });
     };
 
     Plugin.prototype.makeRequest = function ( cep ) {
         var _self = this, zipcode = cep, endpoint =  this.apiUrl.replace( /%s/, zipcode ),
 
-            isResponseValid = function ( response ) {
-                if ( ! response.error ) return true;
+        isResponseValid = function ( response ) {
+            if ( ! response.error ) return true;
 
-                _self.dispatch( events.response_error, {
-                    zipcode: zipcode,
-                    msg: 'Endereço não encontrado.'
-                });
+            _self.dispatch( events.response_error, {
+                zipcode: zipcode,
+                msg: 'Endereço não encontrado.',
+                response: response
+            });
 
-                return false;
-            },
+            return false;
+        },
 
         onSuccess = function ( response ) {
             if ( ! isResponseValid ) return;
-                _self.bind( response );
-                _self.dispatch( events.ajax_success, response );
-            }, 
+             
+            _self.bind( response );
+            _self.dispatch( events.ajax_success, response );
+        }, 
 
         onError = function ( jqxhr, textStatus, error ) {
             _self.current_zipcode = null;
-                _self.dispatch( events.ajax_error, {
+            _self.dispatch( events.ajax_error, {
                 jqxhr: jqxhr,
                 textStatus: textStatus,
                 error: error,
