@@ -1,92 +1,107 @@
 ;(function ($, undefined) {
 
-    var defaults = {
-        fields : {
-            logradouro: '[data-viacep-endereco], .viacep-endereco',
-            bairro: '[data-viacep-bairro], .viacep-bairro',
-            localidade: '[data-viacep-cidade], .viacep-cidade',
-            uf: '[data-viacep-estado], .viacep-estado',
-            cep: '[data-viacep-cep], .viacep-cep'
-        },
-        apiUrl: 'https://viacep.com.br/ws/%s/json/'
-    };
-
     var events = {
-        plugin_init: 'viacep.plugin.init',
         ajax_start: 'viacep.ajax.before',
-        ajax_complete: 'viacep.ajax.after',
+        ajax_complete: 'viacep.ajax.complete',
         ajax_error: 'viacep.ajax.error',
-        ajax_success: 'viacep.ajax.success'
+        ajax_success: 'viacep.ajax.success',
+        response_error: 'viacep.response.error',
     };
 
     function Plugin( element, options ) {
         this.$form = $( element );
-        this.options = $.extend( {}, defaults, options );
-        this.currentZipCode = null;
+        this.options = $.extend( {}, $.fn.viacep.defaults, options );
+        this.currZipcode = null;
         this.requesting = false;
+        this.apiUrl = 'https://viacep.com.br/ws/%s/json/';
         this.init();
     }
 
     Plugin.prototype.init = function () {
         var _self = this;
 
-        this.dispatch(events.plugin_init);
+        this.$form.find( this.options.field_cep ).on( 'change blur keyup', function ( e ) {
+            var zipcode = $( this ).val().replace( /[^0-9]/g, '' );
 
-        this.$form.find(this.options.fields.cep).on('change blur keyup', function (e) {
-            var zipcode = $(this).val().replace(/[^0-9]/g, '');
+            if ( ! ( zipcode && _self.currZipcode !== zipcode && zipcode.length === 8 && !_self.isRequesting ) ) return;
 
-            if (!(zipcode && _self.currentZipCode !== zipcode && zipcode.length === 8 && !_self.requesting)) return;
-
-            _self.requesting = true;
-            _self.currentZipCode = zipcode;
-            _self.requestAddressFor(zipcode);
+            _self.isRequesting = true;
+            _self.currZipcode = zipcode;
+            _self.$form.trigger( events.ajax_start ).makeRequest( zipcode );
         });
     };
 
-    Plugin.prototype.requestAddressFor = function (zipcode) {
-        var _self = this, request;
+    Plugin.prototype.makeRequest = function ( cep ) {
+        var _self = this, zipcode = cep, endpoint =  this.apiUrl.replace( /%s/, zipcode ),
 
-        this.$form.trigger(events.ajax_start);
+            isResponseValid = function ( response ) {
+                if ( ! response.error ) return true;
 
-        request = $.getJSON(this.options.apiUrl.replace(/%s/, zipcode), function (response) {
-            _self.bindValues(response);
-            _self.dispatch(events.ajax_success, response);
-        });
+                _self.dispatch( events.response_error, {
+                    zipcode: zipcode,
+                    msg: 'Endereço não encontrado.'
+                });
 
-        request.fail(function (jqxhr, textStatus, error) {
-            _self.currentZipCode = null;
-            _self.dispatch(events.ajax_error, {
+                return false;
+            },
+
+        onSuccess = function ( response ) {
+            if ( ! isResponseValid ) return;
+                _self.bind( response );
+                _self.dispatch( events.ajax_success, response );
+            }, 
+
+        onError = function ( jqxhr, textStatus, error ) {
+            _self.current_zipcode = null;
+                _self.dispatch( events.ajax_error, {
                 jqxhr: jqxhr,
                 textStatus: textStatus,
-                error: error
+                error: error,
+                zipcode: zipcode
             });
-        });
+        }, 
 
-        request.always(function () {
+        onComplete = function () {
             _self.requesting = false;
-            _self.dispatch(events.ajax_complete);
-        });
+            _self.dispatch( events.ajax_complete, { zipcode: zipcode } );
+        };
+
+        $.getJSON( endpoint, onSuccess ).fail( onError ).always( onComplete );
     };
 
-    Plugin.prototype.bindValues = function (data) {
-        for (var prop in this.options.fields) {
-            this.$form.find(this.options.fields[prop]).val(data[prop]).trigger('change');
+    Plugin.prototype.bind = function ( data ) {
+        for ( var prop in this.data ) {
+            if ( prop == 'cep' ) continue;
+
+            this.$form
+                .find( this.options[ 'field_' + prop ] )
+                .val( data[ prop ] ).trigger( 'change' );
         }
     };
 
-    Plugin.prototype.dispatch = function (event, data) {
-        this.$form.trigger(event, data);
+    Plugin.prototype.dispatch = function ( event, data ) {
+        this.$form.trigger( event, data );
+        return this;
     };
 
-    $.fn.ViaCep = function ( options ) {
-        return this.each(function () {
+    $.fn.viacep = function ( options ) {
+        return this.each( function () {
             if ( ! $.data( this, "plugin" ) ) {
                 $.data( this, "plugin", new Plugin( this, options ) );
             }
         });
     };
 
-    $(document).ready(function () {
-        $('[data-viacep]').ViaCep();
+    $.fn.viacep.defaults = {
+        container : '[data-viacep]',
+        field_logradouro: '[data-viacep-endereco], .viacep-endereco',
+        field_bairro: '[data-viacep-bairro], .viacep-bairro',
+        field_localidade: '[data-viacep-cidade], .viacep-cidade',
+        field_uf: '[data-viacep-estado], .viacep-estado',
+        field_cep: '[data-viacep-cep], .viacep-cep'
+    };
+
+    $( document ).ready( function () {
+        $($.fn.viacep.defaults.container).viacep();
     });
 })( jQuery, undefined );
