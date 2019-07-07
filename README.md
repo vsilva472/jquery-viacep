@@ -13,15 +13,15 @@ Um poderoso plugin <a href="https://jquery.com" target="_blank">jQuery</a> para 
 
 ## Conteúdo  
 1. [Iniciando](#iniciando)
-2. [Instalação](#instalacao)
-3. [Documentação e Exemplos](#documentacao-e-exemplos)
+2. [Instalação](#Instalação)
+3. [Documentação e Exemplos](#documentação-e-exemplos)
 6. [Compatibilidade](#compatibilidade)
 7. [Bug tracker](#bugs)
 
-## Iniciando
+## Iniciando  
 jquery-viacep é um plugin para autocompletar ceps desenvolcido de forma extramamente leve e simples e possui uma api de eventos customizados que o torna altamente flexível fazendo com que seja integrável em qualquer sistema de cadastro (Ecommerces, ERPs, Frameworks como laravel, codeigniter e etc) com a dependência única da biblioteca jQuery.
 
-## Instalação
+## Instalação  
 
 ```javascript
 <script
