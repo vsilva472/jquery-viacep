@@ -4,8 +4,7 @@
 
 
 <p align="center">
-Um poderoso plugin <a href="https://jquery.com" target="_blank">jQuery</a> para auto-completar endereços usando <strong>cep dos correios</strong> utilizando a api do site <a href="https://viacep.com.br/" target="_blank">viaCEP</a>. Compátível com vários sistemas de e-commerce e frameworks (incluindo o Laravel) e com suporte a múltiplos forms na mesma página.
-</p>
+Um poderoso plugin <a href="https://jquery.com" target="_blank">jQuery</a> para auto-completar endereços usando <strong>cep dos correios</strong> com menos de 2KB.
 
 ## Links  
 - [Documentção](https://vsilva472.github.io/jquery-viacep/)
@@ -19,16 +18,14 @@ Um poderoso plugin <a href="https://jquery.com" target="_blank">jQuery</a> para 
 7. [Bug tracker](#bugs)
 
 ## Iniciando  
-jquery-viacep é um plugin para autocompletar ceps desenvolcido de forma extramamente leve e simples e possui uma api de eventos customizados que o torna altamente flexível fazendo com que seja integrável em qualquer sistema de cadastro (Ecommerces, ERPs, Frameworks como laravel, codeigniter e etc) com a dependência única da biblioteca jQuery.
+jquery-viacep é um plugin para autocompletar ceps desenvolvido de forma extramamente leve com uma poderosíssima api de eventos customizados que o torna altamente flexível fazendo com que seja integrável em qualquer sistema de cadastro (CMSs, Ecommerces, ERPs, Frameworks como laravel, codeigniter e etc) com a dependência única da biblioteca jQuery.
+</p>
 
 ## Instalação  
 
 ```javascript
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script src="/path/para/jquery-viacep/dist/jquery-viacep.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="/path/para/jquery-viacep/dist/jquery-viacep.min.js"></script>
 ```
 
 ##### Download direto
