@@ -85,16 +85,9 @@
                 $(this).find('.unidade').val(response.unidade);
                 $(this).find('.ibge').val(response.ibge);
                 $(this).find('.complemento').val(response.complemento);
-                
-                // exemplo
-                if ( response.gia.length ) {
-                    $(this).find('.gia').val(response.gia);
-                }
-
+ 
                 // Ex: concatenar o complemento no campo endereço
-                if ( response.complemento.length ) {
-                    $(this).find('.endereco').val(response.logradouro + ' ' + response.complemento);
-                }
+                $(this).find('#endereco').val(response.logradouro + ' ' + response.complemento);
             });
         } );
     </script>

@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="../src/jquery-viacep.js"></script>
+    <script src="../dist/jquery-viacep.min.js"></script>
     <style>
         body { padding: 50px; }
         input, select { margin-bottom: 15px; }
@@ -72,22 +72,36 @@
 
     <script>
         jQuery( document ).ready( function ( $ ) { 
+			/**
+			 * O código comentado abaixo É PARA SER USADO EM PRODUÇÃO.
+			 * Está comentado pois a api do via é muito veloz
+			 * e não dá tempo do FORM de perceber o o form ser bloqueado.
+			*/
+			/*
+			$("[data-viacep]").on('viacep.ajax.before', function () {
+                $(this).find('fieldset').attr('disabled', true);
+            })
+            .on( 'viacep.ajax.complete', function () {
+                $(this).find('fieldset').removeAttr('disabled');
+            });
+			*/
+		
+			/**
+			 * O código abaixo é apenas para fins demonstrativos
+			 * e não de ve ser usado em produção.
+			 */
             $("[data-viacep]").on('viacep.ajax.before', function () {
                 //$(this).find('.loading').removeClass('hide');
                 $(this).find('fieldset').attr('disabled', true);
             })
             .on( 'viacep.ajax.complete', function () {
-                //$(this).find('.loading').addClass('hide');
-                //$(this).find('fieldset').removeAttr('disabled');
-
                 // debug para fins demonstrativos
-                // deve ser removido em produção
+                // e deve ser removido em produção
                 // e descomentar a linha acima onde remove o atributo disabled
-                // $(this).find('fieldset').removeAttr('disabled');
                 var $this = $(this);
                 setTimeout(function () {
                     $this.find('fieldset').removeAttr('disabled');
-                }, 2000);
+                }, 1000);
             });
         } );
     </script>
