@@ -415,8 +415,8 @@ $('#form-9').on('viacep.ajax.success', function (e, response) {
 </script>
 ```
 
-### Doação
-Gostou do plugin? Que tal apoiar o projeto e me enviar algumas **HTMLCOIN**   
+### Apoir
+Apoie o projeto e envie algumas **HTMLCOIN**   
 Wallet: **[HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp](htmlcoin:HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp?label=Doa%C3%A7%C3%B5es%20Github)**  
   
 ![Doar HTMLCoin](https://www.viniciusdesouza.com.br/img/htmlcoin.png)
