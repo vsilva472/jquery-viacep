@@ -141,6 +141,8 @@ $('[name="cadastro-pessoa"]').viacep({
 </script>
 ```
 
+**Nota** A chamada para o plugin __deve ser feita em uma tag que englobe os campos__ a serem auto completados (geralmente na tag `<form>`).
+
 ### Uso em conjunto com jQuery Mask
 
 Este plugin não faz bind de valores no campo de cep, isto torna jquery-viacep um plugin compatível com outros plugins de máscaras como por exemplo o [jQuery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin/) de forma nativa.
@@ -157,8 +159,6 @@ Entretanto caso você precise/deseje fazer alguma programação customizada na(s
 $('.cep').mask('00000-000');
 </script>
 ```
-
-**Nota** A chamada para o plugin __deve ser feita em uma tag que englobe os campos__ a serem auto completados (geralmente na tag `<form>`).
 
 ## Eventos
 O plugin possui uma poderosa api de eventos que o torna extensível e flexível o suficiente para ser integrável em qualquer sistema que possua `jQuery` instalado.
