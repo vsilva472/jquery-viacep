@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>jQuery ViaCEP plugin</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="../dist/jquery-viacep.min.js"></script>
+    <style>
+        body { padding: 50px; }
+        label, form, .help-block { display: block; }
+        input:not(#cep), select, .help-block { margin-bottom: 15px; }
+        #cep { max-width: 250px; }
+        form {max-width: 500px;}
+    </style>
+</head>
+<body>
+    <form data-viacep>
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" class="form-control" id="cep" placeholder="00000-000" data-viacep-cep>
+        <small class="help-block text-muted">Experimente o CEP 01001000</small>
+
+        <label for="endereco">Endereço</label>
+        <input type="text" name="endereco" class="form-control" id="endereco" data-viacep-endereco>
+
+        <label for="complemento">Complemento</label>
+        <input type="text" name="complemento" id="complemento" class="complemento form-control">
+
+        <label for="bairro">Bairro</label>
+        <input type="text" name="bairro" class="form-control" id="bairro" data-viacep-bairro>
+
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" class="form-control" id="cidade" data-viacep-cidade>
+
+        <label for="estado">Estado</label>
+        <select id="estado" name="estado" class="form-control" data-viacep-estado>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+
+        <label for="gia">GIA</label>
+        <input type="text" name="gia" class="form-control gia" id="gia">
+
+        <label for="unidade">Unidade</label>
+        <input type="text" name="unidade" id="unidade" class="unidade form-control">
+
+        <label for="ibge">IBGE</label>
+        <input type="text" name="ibge" id="ibge" class="ibge form-control">
+    </form>
+
+    <script>
+        jQuery( document ).ready( function ( $ ) { 
+            $('[data-viacep]').on('viacep.ajax.success', function (e, response) {
+                // TO DO implementar validações
+                $(this).find('.gia').val(response.gia);
+                $(this).find('.unidade').val(response.unidade);
+                $(this).find('.ibge').val(response.ibge);
+                $(this).find('.complemento').val(response.complemento);
+                
+                // exemplo
+                if ( response.gia.length ) {
+                    $(this).find('.gia').val(response.gia);
+                }
+
+                // Ex: concatenar o complemento no campo endereço
+                if ( response.complemento.length ) {
+                    $(this).find('.endereco').val(response.logradouro + ' ' + response.complemento);
+                }
+            });
+        } );
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery ViaCEP plugin</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="../src/jquery-viacep.js"></script>
+    <style>
+        body { padding: 50px; }
+        input, select { margin-bottom: 15px; }
+        #cep { max-width: 250px; }
+        form {max-width: 500px;}
+        .hide {display:none;}
+    </style>
+</head>
+<body>
+    <form data-viacep>
+        <label for="cep">CEP</label> 
+        <div class="spinner-grow spinner-grow-sm text-warning hide loading" role="status">
+            <span class="sr-only">Aguarde...</span>
+        </div>
+        <input type="text" name="cep" class="form-control" id="cep" placeholder="00000-000" data-viacep-cep>
+
+        <label for="endereco">Endereço</label>
+        <input type="tex" name="endereco" class="form-control" id="endereco" data-viacep-endereco>
+
+        <label for="bairro">Bairro</label>
+        <input type="text" name="bairro" class="form-control" id="bairro" data-viacep-bairro>
+
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" class="form-control" id="cidade" data-viacep-cidade>
+
+        <label for="estado">Estado</label>
+        <select id="estado" name="estado" class="form-control" data-viacep-estado>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+    </form>
+
+    <script>
+        /**
+         * Atenção a api do viaCEP é muito veloz
+         * Talvez você não consiga ver o loading
+         * Mas é bom ter caso algum dia a api venha ficar lenta.
+         */
+        jQuery( document ).ready( function ( $ ) { 
+            $("[data-viacep]").on('viacep.ajax.before viacep.ajax.complete', function () {
+                $(this).find('.loading').toggleClass('hide');
+            });
+        } );
+
+        /**
+         * Se você realmente testar para ver o loading em ação
+         * Comente o script acima e descomente o script abaixo  
+         */
+         /*
+         jQuery( document ).ready( function ( $ ) { 
+            $("[data-viacep]").on('viacep.ajax.before', function () {
+                $(this).find('.loading').toggleClass('hide');
+            })
+            .on('viacep.ajax.complete', function () {
+                var $this = $(this);
+                // somente para debug
+                // espera 2s e entao esconde o loader
+                setTimeout(function () {
+                    $this.find('.loading').toggleClass('hide');
+                }, 2000);
+            });
+        } );
+        */
+    </script>
+</body>
+</html>
