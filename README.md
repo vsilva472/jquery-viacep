@@ -170,6 +170,7 @@ Evento | Descrição | Argumentos
 `viacep.ajax.complete` | Disparado no final do ciclo da requisição independente se a mesma foi obteve sucesso ou erro. | `NULL`
 `viacep.ajax.error` | Disparado quando ocorre um erro na requisição (400, 500  etc.) | `jqxhr, textStatus, error`
 `viacep.ajax.success` | Disparado quando a requisição é feita com sucesso e após os bind dos valores nos campos | `response` completo incluindo os campos `unidade`, `ibge` e `gia` da api do ViaCEP
+`viacep.response.error` | Disparado quando a requisição foi feita com sucesso porém o objeto json da resposta da api contém o atributo `error` | `cep, msg, response`
  
  
 ## Exemplos avançados
