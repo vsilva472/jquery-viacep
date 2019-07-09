@@ -27,7 +27,7 @@ Compatível ainda com vários CMSs e Frameworks (Laravel, WooCommerce e etc).
   - [Integrando com Google Analytics](#integrando-com-google-analytics)
   - [Integrando com Google TagManager](#integrando-com-google-tagmanager)
   - [Integrando com Select2](#integrando-com-select2)
-  - [Campos gia, ibge, unidade e complemento](#campos-gia,-ibge,-unidade-e-complemento)
+  - [Campos gia, ibge, unidade e complemento](#campos-gia-ibge-unidade-e-complemento)
 - [Apoie o projeto](#doação)
 
 ## Suporte de Browser
@@ -333,7 +333,7 @@ $('#form-7').on( 'viacep.ajax.success', function ( e, response ) {
 ```
 
 
-### Campos gia, ibge, unidade e complemento
+### Campos gia ibge unidade e complemento
 
 Talvez em seu(s) formulário(s) você precise do(s) campo(s) `gia` e/ou `ibge` e/ou `complemento` e/ou `unidade`. Você pode estar populando estes campos de 3 formas:
 
@@ -401,22 +401,15 @@ $('#form-9').on('viacep.ajax.success', function (e, response) {
     $(this).find('.unidade').val(response.unidade);
     $(this).find('.ibge').val(response.ibge);
     $(this).find('.complemento').val(response.complemento);
-    
-    // exemplo
-    if ( response.gia.length ) {
-        $(this).find('.gia').val(response.gia);
-    }
 
     // Ex: concatenar o complemento no campo endereço
-    if ( response.complemento.length ) {
-        $(this).find('.endereco').val(response.logradouro + ' ' + response.complemento);
-    }
+    $(this).find('#endereco').val(response.logradouro + ' ' + response.complemento);
 });
 </script>
 ```
 
-### Apoir
-Apoie o projeto e envie algumas **HTMLCOIN**   
+### Apoie
+Apoie o projeto e enviando **HTMLCOIN**   
 Wallet: **[HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp](htmlcoin:HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp?label=Doa%C3%A7%C3%B5es%20Github)**  
   
 ![Doar HTMLCoin](https://www.viniciusdesouza.com.br/img/htmlcoin.png)

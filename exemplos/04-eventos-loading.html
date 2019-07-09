@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="../src/jquery-viacep.js"></script>
+    <script src="../dist/jquery-viacep.min.js"></script>
     <style>
         body { padding: 50px; }
         input, select { margin-bottom: 15px; }
@@ -68,21 +68,22 @@
 
     <script>
         /**
-         * Atenção a api do viaCEP é muito veloz
-         * Talvez você não consiga ver o loading
-         * Mas é bom ter caso algum dia a api venha ficar lenta.
+         * O código comentado abaixo é para ser implementado em produção
+		 * Está comentado pois a api do via é muito veloz
+		 * e não dá tempo do loading ser exibido.
          */
-        jQuery( document ).ready( function ( $ ) { 
+        /*
+		jQuery( document ).ready( function ( $ ) { 
             $("[data-viacep]").on('viacep.ajax.before viacep.ajax.complete', function () {
                 $(this).find('.loading').toggleClass('hide');
             });
         } );
+		*/
 
         /**
-         * Se você realmente testar para ver o loading em ação
-         * Comente o script acima e descomente o script abaixo  
+         * Este código é apenas para fins demonstrativos do loading
+		 * e não de ve ser usado em produção.
          */
-         /*
          jQuery( document ).ready( function ( $ ) { 
             $("[data-viacep]").on('viacep.ajax.before', function () {
                 $(this).find('.loading').toggleClass('hide');
@@ -96,7 +97,6 @@
                 }, 2000);
             });
         } );
-        */
     </script>
 </body>
 </html>
