@@ -1,6 +1,6 @@
 {
     "name": "vsilva472/jquery-viacep",
-    "description": "Plugin jquery para autocompletar endere\u0000os a partir de um cep utilizando a api do viaCEP",
+    "description": "Plugin jquery para autocompletar endereços a partir de um cep utilizando a api do viaCEP",
 	"keywords": ["jquery", "correios", "cep", "viaCEP", "cep-autocomplete"],
 	"homepage": "https://github.com/vsilva472/jquery-viacep",
     "type": "library",
