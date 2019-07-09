@@ -12,7 +12,7 @@
         this.$form = $( element );
         this.options = $.extend( {}, $.fn.viacep.defaults, options );
         this.currZipcode = null;
-        this.requesting = false;
+        this.isRequesting = false;
         this.apiUrl = 'https://viacep.com.br/ws/%s/json/';
         this.init();
     }
@@ -47,7 +47,7 @@
         },
 
         onSuccess = function ( response ) {
-            if ( ! isResponseValid ) return;
+            if ( ! isResponseValid( response ) ) return;
              
             _self.bind( response );
             _self.dispatch( events.ajax_success, response );
@@ -64,7 +64,7 @@
         }, 
 
         onComplete = function () {
-            _self.requesting = false;
+            _self.isRequesting = false;
             _self.dispatch( events.ajax_complete, { zipcode: zipcode } );
         };
 
@@ -72,7 +72,7 @@
     };
 
     Plugin.prototype.bind = function ( data ) {
-        for ( var prop in this.data ) {
+        for ( var prop in data ) {
             if ( prop == 'cep' ) continue;
 
             this.$form

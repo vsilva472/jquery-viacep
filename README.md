@@ -8,15 +8,15 @@ Compatível ainda com vários CMSs e Frameworks (Laravel, WooCommerce e etc).
 ## Conteúdo
 - [Suporte de browser](#suporte-de-browser)
 - [Instalação](#instalação)
-  - [Via Git](#)
-  - [NPM](#)
-  - [Composer](#)
-  - [CDN](#)
+  - [Via Git](#instalação-via-git)
+  - [NPM](#instalação-via-npm)
+  - [Composer](#instalação-via-composer)
+  - [CDN](#instalação-via-CDN)
 - [Opções padrão](#opções-padrão)
 - [Instruções de uso](#instruções-de-uso)
-  - [Via data-attributes](#)
-  - [Via classes css](#)
-  - [Seletores mixtos](#)
+  - [Via data-attributes](#usando-com-seletores-padrão-via-data-attributes)
+  - [Via classes css](#usando-com-seletores-padrão-via-classes-css)
+  - [Seletores mistos](#usando-com-seletores-mistos)
 - [Eventos](#eventos)
 - [Exemplos avançados](#exemplos-avançados)
   - [Exibindo loading](#exibindo-loading)
@@ -77,7 +77,7 @@ Se seu projeto possui vários formulários e todos são padronizados, talvez sej
 
 ```javascript
 // arquivo vicep.configs.js
-$.fn.ViaCep.defaults = {
+$.fn.viacep.defaults = {
     container: '.form',
     field_logradouro: '.logradouro',
     field_bairro: '.bairro',
@@ -94,7 +94,7 @@ $('.form').viacep();
 ### Usando com seletores padrão via *data-attributes*
 ```html
 <form data-viacep>
-    <input name="endereco" data-viacep-cep>
+    <input name="cep" data-viacep-cep>
     <input name="endereco" data-viacep-endereco>
     <input name="bairro" data-viacep-bairro>
     <input name="cidade" data-viacep-cidade>
@@ -107,7 +107,7 @@ $('.form').viacep();
 ### Usando com seletores padrão via classes *CSS*
 ```html
 <form class="form">
-    <input name="endereco" class="viacep-cep">
+    <input name="cep" class="viacep-cep">
     <input name="endereco" class="viacep-endereco">
     <input name="bairro" class="viacep-bairro">
     <input name="cidade" class="viacep-cidade">
@@ -119,12 +119,12 @@ $('.form').viacep();
 </script>
 ```
 
-### Usando com seletores *mixtos*
+### Usando com seletores *mistos*
 O plugin é flexível o suficiente para misturar seletores padrão com personalizados.  
 O exemplo abaixo usa os seletores padrão de classe css para o campo `bairro` e o seletor padrão de `data-attribute` para o campo `cidade` e seletores personalizados para os demais campos.
 ```html
 <form name="cadastro-pessoa">
-    <input name="endereco" class="cep">
+    <input name="cep" class="cep">
     <input name="endereco"  data-endereco-personalizado>
     <input name="bairro" class="viacep-bairro">
     <input name="cidade" data-viacep-cidade>
@@ -133,11 +133,9 @@ O exemplo abaixo usa os seletores padrão de classe css para o campo `bairro` e 
                                 
 <script>
 $('[name="cadastro-pessoa"]').viacep({
-    fields : {
-        logradouro: '[data-endereco-personalizado]',
-        uf: '#uf',
-        cep: '.cep'
-    }
+    field_logradouro: '[data-endereco-personalizado]',
+    field_uf: '#uf',
+    field_cep: '.cep'
 });
 </script>
 ```
@@ -175,7 +173,7 @@ Veja abaixo algumas aplicações avançadas do plugin utilizando a api de evento
 </form>
 
 <script>
-$("[data-viacep]").on('viacep.ajax.before, viacep.ajax.complete', function () {
+$("[data-viacep]").on('viacep.ajax.before viacep.ajax.complete', function () {
     $(this).find('.loading').toggleClass('hide');
 });
 </script>
@@ -222,10 +220,10 @@ Algumas vezes devido a uma regra de negócio, não desejamos permitir que o usu�
 
 <script>
 $('#form-2').on( 'viacep.ajax.complete', function () {
-    var fields_to_block = ['cep', 'endereco', 'bairro', 'cidade', 'estado'];
+    var $this = $( this ), fields_to_block = ['cep', 'endereco', 'bairro', 'cidade', 'estado'];
 
     fields_to_block.forEach(function (name) {
-        $(this).find('[name="' + name + '"]').attr('disabled', true);
+        $this.find('[name="' + name + '"]').attr('disabled', true);
     });
 });
 </script>
@@ -248,10 +246,7 @@ Alguns projetos utilizam o nome do estado ao invés da `uf` nos `<option>`. O ex
 
 <script>
 $('#form-3').on( 'viacep.ajax.success', function (e, response) {
-    //FROM https://gist.github.com/ricardobarantini/5665214#gistcomment-2882978
-    var states = {"AC":"Acre","AL":"Alagoas","AP":"Amapá","AM":"Amazonas","BA":"Bahia","CE":"Ceará","DF":"Distrito Federal","ES":"Espírito Santo","GO":"Goiás","MA":"Maranhão","MT":"Mato Grosso","MS":"Mato Grosso do Sul","MG":"Minas Gerais","PR":"Paraná","PB":"Paraíba","PA":"Pará","PE":"Pernambuco","PI":"Piauí","RN":"Rio Grande do Norte","RS":"Rio Grande do Sul","RJ":"Rio de Janeiro","RO":"Rondônia","RR":"Roraima","SC":"Santa Catarina","SE":"Sergipe","SP":"São Paulo","TO":"Tocantins"}
-
-    $(this).find('#estado').val(states[response.uf]).trigger('change');
+    $(this).find('#estado').val(response.localidade).trigger('change');
 });
 </script>
 ```
@@ -401,11 +396,11 @@ Esta opção é a recomendada pois nela você tem maior controle sobre os dados 
 
 <script>
 $('#form-9').on('viacep.ajax.success', function (e, response) {
-    // TO DO implementar checagens
+    // TO DO implementar validações
     $(this).find('.gia').val(response.gia);
     $(this).find('.unidade').val(response.unidade);
     $(this).find('.ibge').val(response.ibge);
-    $(this).find('.complemento').val(response.gicomplementoa);
+    $(this).find('.complemento').val(response.complemento);
     
     // exemplo
     if ( response.gia.length ) {
