@@ -1,22 +1,24 @@
 {
-  "name": "jquery-viacep",
-  "version": "1.0.0",
-  "description": "Plugin para autocompletar endereços a partir de um cep",
+  "name": "@vsilva472/jquery-viacep",
+  "version": "1.0.1",
+  "description": "Plugin jquery para auto completar endereços a partir de um cep utilizando a api do site viacep",
+  "author": "Vinicius Silva <vsilva472@gmail.com>",
+  "homepage": "https://github.com/vsilva472/jquery-viacep#readme",
+  "main": "./dist/jquery-viacep.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vsilva472/jquery-viacep.git"
   },
   "keywords": [
-    "cep",
-    "correios",
     "jquery",
+    "correios",
+    "cep",
     "viacep",
-    "cep-autocomplete"
+    "cep-autocomplete",
+    "jquery-plugin"
   ],
-  "author": "Vinicius Silva",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vsilva472/jquery-viacep/issues"
-  },
-  "homepage": "https://github.com/vsilva472/jquery-viacep#readme"
+  }
 }
