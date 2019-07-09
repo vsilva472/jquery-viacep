@@ -17,6 +17,7 @@ Compatível ainda com vários CMSs e Frameworks (Laravel, WooCommerce e etc).
   - [Via data-attributes](#usando-com-seletores-padrão-via-data-attributes)
   - [Via classes css](#usando-com-seletores-padrão-via-classes-css)
   - [Seletores mistos](#usando-com-seletores-mistos)
+  - [Uso com jQuery Mask](#uso-em-conjunto-com-jquery-mask)
 - [Eventos](#eventos)
 - [Exemplos avançados](#exemplos-avançados)
   - [Exibindo loading](#exibindo-loading)
@@ -28,7 +29,6 @@ Compatível ainda com vários CMSs e Frameworks (Laravel, WooCommerce e etc).
   - [Integrando com Google TagManager](#integrando-com-google-tagmanager)
   - [Integrando com Select2](#integrando-com-select2)
   - [Campos gia, ibge, unidade e complemento](#campos-gia-ibge-unidade-e-complemento)
-  - [Integrando jQuery Mask](#integrando-jquery-mask)
 - [Apoie o projeto](#doação)
 
 ## Suporte de Browser
@@ -138,6 +138,23 @@ $('[name="cadastro-pessoa"]').viacep({
     field_uf: '#uf',
     field_cep: '.cep'
 });
+</script>
+```
+
+### Uso em conjunto com jQuery Mask
+
+Este plugin não faz bind de valores no campo de cep, isto torna jquery-viacep um plugin compatível com outros plugins de máscaras como por exemplo o [jQuery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin/) de forma nativa.
+
+Entretanto caso você precise/deseje fazer alguma programação customizada na(s) máscara(s) do(s) campo(s) antes e/ou depois de receber os dados da api, você pode estar consultando a [api de eventos](#eventos) e identificar qual melhor evento se adapta a sua necessidade de customização da máscara.
+
+```html
+<form data-viacep>
+    <input type="text" name="cep" class="cep" data-viacep-cep>
+	(...)
+</form>
+
+<script>
+$('.cep').mask('00000-000');
 </script>
 ```
 
@@ -408,24 +425,6 @@ $('#form-9').on('viacep.ajax.success', function (e, response) {
 });
 </script>
 ```
-
-### Integrando jQuery Mask
-
-Este plugin não bind de valores no campo de cep, isto torna jquery-viacep um plugin compatível com outros plugins de máscaras como por exemplo o [jQuery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin/) de forma nativa.
-
-Entretanto caso você precise/deseje fazer alguma programação customizada na(s) máscara(s) do(s) campo(s) antes ou depois de receber os dados da api, você pode estar utilizando o evento correspondente a sua necessidade.
-
-```html
-<form data-viacep>
-    <input type="text" name="cep" class="cep" data-viacep-cep>
-	(...)
-</form>
-
-<script>
-$('.cep').mask('00000-000');
-</script>
-```
-
 
 ### Apoie
 Apoie o projeto e enviando **HTMLCOIN**   
