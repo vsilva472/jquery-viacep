@@ -1,5 +1,7 @@
 # jQuery ViaCEP
-Um plugin jQuery para autocompletar endereços a partir de um CEP utilizando a api do site [ViaCEP](https://viacep.com.br) com ~1Kb.  
+[![license](https://img.shields.io/github/license/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/blob/master/LICENSE) [![Release](https://img.shields.io/github/release/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/releases) ![Data release](https://img.shields.io/github/release-date/vsilva472/jquery-viacep.svg?color=%23ff6600&style=flat-square)
+
+Um plugin jQuery para autocompletar endereços a partir de um CEP utilizando a api do site [ViaCEP](https://viacep.com.br) com ~1,6Kb.  
 Elaborado de forma não intrusiva, ou seja, não é necessário alterar o código existente da aplicação. 
 
 Compatível com gerenciadores de Tags (como Google Tagmanager) e com suporte a múltiplos forms na mesma página.
