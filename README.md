@@ -29,7 +29,7 @@ Compatível ainda com vários CMSs e Frameworks (Laravel, WooCommerce e etc).
   - [Integrando com Google TagManager](#integrando-com-google-tagmanager)
   - [Integrando com Select2](#integrando-com-select2)
   - [Campos gia, ibge, unidade e complemento](#campos-gia-ibge-unidade-e-complemento)
-- [Apoie o projeto](#doação)
+- [Apoie o projeto](#apoie)
 
 ## Suporte de Browser
 
@@ -428,7 +428,7 @@ $('#form-9').on('viacep.ajax.success', function (e, response) {
 ```
 
 ### Apoie
-Apoie o projeto e enviando **HTMLCOIN**   
+Apoie o projeto enviando **HTMLCOIN**   
 Wallet: **[HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp](htmlcoin:HqgaiK6T1o2JP4p3p34CZp2g3XnSsSdCXp?label=Doa%C3%A7%C3%B5es%20Github)**  
   
 ![Doar HTMLCoin](https://www.viniciusdesouza.com.br/img/htmlcoin.png)
