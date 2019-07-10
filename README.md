@@ -54,7 +54,7 @@ IE 10+ ✔ | Último ✔ | Último ✔ | Último ✔ | Último ✔ |
 ##### Instalação via CDN
 [https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep](https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep)  
 
-`<script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep@1.0.1/dist/jquery-viacep.min.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep@1/dist/jquery-viacep.min.js"></script>`
 
 
 
