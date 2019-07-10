@@ -1,5 +1,5 @@
 # jQuery ViaCEP
-[![license](https://img.shields.io/github/license/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/blob/master/LICENSE) [![Release](https://img.shields.io/github/release/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/releases) [![](https://data.jsdelivr.com/v1/package/npm/@vsilva472/jquery-viacep/badge)](https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep)
+[![license](https://img.shields.io/github/license/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/blob/master/LICENSE) [![Release](https://img.shields.io/github/release/vsilva472/jquery-viacep.svg?style=flat-square)](https://github.com/vsilva472/jquery-viacep/releases) [![](https://data.jsdelivr.com/v1/package/npm/@vsilva472/jquery-viacep/badge)](https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep)  [![npm](https://img.shields.io/npm/dm/@vsilva472/jquery-viacep.svg?style=flat-square)](https://www.npmjs.com/package/@vsilva472/jquery-viacep)
 
 Um plugin jQuery para autocompletar endereços a partir de um CEP utilizando a api do site [ViaCEP](https://viacep.com.br) com ~1,6Kb.  
 Elaborado de forma não intrusiva, ou seja, não é necessário alterar o código existente da aplicação. 
