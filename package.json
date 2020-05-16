@@ -1,6 +1,6 @@
 {
   "name": "@vsilva472/jquery-viacep",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Plugin jquery para auto completar endereços a partir de um cep utilizando a api do site viacep",
   "author": "Vinicius Silva <vsilva472@gmail.com>",
   "homepage": "https://github.com/vsilva472/jquery-viacep#readme",

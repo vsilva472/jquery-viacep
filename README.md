@@ -46,7 +46,7 @@ IE 10+ ✔ | Último ✔ | Último ✔ | Último ✔ | Último ✔ |
 `git clone https://github.com/vsilva472/jquery-viacep.git` (HTTPS)
 
 ##### Instalação via NPM
-`npm i @vsilva472/jquery-viacep`
+`npm i @vsilva472/jquery-viacep --save`
 
 ##### Instalação via Composer
 `composer require vsilva472/jquery-viacep`
@@ -54,7 +54,7 @@ IE 10+ ✔ | Último ✔ | Último ✔ | Último ✔ | Último ✔ |
 ##### Instalação via CDN
 [https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep](https://www.jsdelivr.com/package/npm/@vsilva472/jquery-viacep)  
 
-`<script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep@1/dist/jquery-viacep.min.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep/dist/jquery-viacep.min.js"></script>`
 
 
 
@@ -175,7 +175,7 @@ Evento | Descrição | Argumentos
 `viacep.ajax.complete` | Disparado no final do ciclo da requisição independente se a mesma foi obteve sucesso ou erro. | `NULL`
 `viacep.ajax.error` | Disparado quando ocorre um erro na requisição (400, 500  etc.) | `jqxhr, textStatus, error`
 `viacep.ajax.success` | Disparado quando a requisição é feita com sucesso e após os bind dos valores nos campos | `response` completo incluindo os campos `unidade`, `ibge` e `gia` da api do ViaCEP
-`viacep.response.error` | Disparado quando a requisição foi feita com sucesso porém o objeto json da resposta da api contém o atributo `error` | `cep, msg, response`
+`viacep.response.error` | Disparado quando a requisição foi feita com sucesso porém o objeto json da resposta da api contém o atributo `erro` | `cep, msg, response`
  
  
 ## Exemplos avançados
@@ -310,7 +310,7 @@ Talvez seja interessante para e equibe de BI extrair algumas informações sobre
 
 <script>
 $('#form-5').on( 'viacep.ajax.success', function ( e, response ) {
-    ga( 'send', 'event', 'CEP', 'buscar', response.cidade );
+    ga( 'send', 'event', 'CEP', 'buscar', response.localidade );
 });
 </script>
 ```
@@ -328,7 +328,7 @@ $('#form-6').on( 'viacep.ajax.success', function ( e, response ) {
         event: 'sendToGA',
         eventCategory: 'CEP',
         eventAction: 'buscar',
-        eventLabel: response.cidade
+        eventLabel: response.localidade
     });
 });
 </script>

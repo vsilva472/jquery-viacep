@@ -35,7 +35,7 @@
         var _self = this, zipcode = cep, endpoint =  this.apiUrl.replace( /%s/, zipcode ),
 
         isResponseValid = function ( response ) {
-            if ( ! response.error ) return true;
+            if ( ! response.erro ) return true;
 
             _self.dispatch( events.response_error, {
                 zipcode: zipcode,
